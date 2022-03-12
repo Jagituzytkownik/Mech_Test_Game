@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator ShootRightWeapeon()
     {
-        rightWeapon.GetComponent<IWeapon>().Shoot(leftWeapon.GetComponent<IWeapon>().WeaponMuzzle()[1]);
+        rightWeapon.GetComponent<IWeapon>().Shoot(rightWeapon.GetComponent<IWeapon>().WeaponMuzzle()[1]);
         //gunAnimator.SetBool("Shoot", true);
         yield return null;
     }
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
     {
         playerMovement.ActorMovement(this.gameObject, horizontalRotation.transform.rotation, Camera.main, playerSpeed, playerAnimator, isOnGround);
         playerRotation.PlayerRotation(verticalRotation, horizontalRotation, Camera.main, mouseSpeed);
-        playerRotation.WeaponRotation(leftWeapon, rightWeapon, Camera.main);   
+        playerRotation.WeaponMuzzleDirection(leftWeapon.GetComponent<IWeapon>().WeaponMuzzle()[0], rightWeapon.GetComponent<IWeapon>().WeaponMuzzle()[1], Camera.main);
         if (Input.GetKey(KeyCode.Mouse0))
         {
             StartCoroutine(ShootLeftWeapeon());
