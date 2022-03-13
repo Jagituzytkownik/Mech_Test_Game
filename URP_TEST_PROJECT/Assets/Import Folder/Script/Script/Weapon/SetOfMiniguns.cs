@@ -10,7 +10,7 @@ public class SetOfMiniguns : MonoBehaviour, IWeapon
     [SerializeField] GameObject weaponMuzzleRight;
     public void Shoot(GameObject muzzle)
     {
-        if (time == 1)
+        if (time == 10)
         {
             Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
             time = 0;

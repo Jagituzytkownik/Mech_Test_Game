@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     private float destroyTime=0;
     void Update()
     {
-        this.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward*5f);
+        this.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward*1000f);
 
         if (destroyTime < 5)
         {

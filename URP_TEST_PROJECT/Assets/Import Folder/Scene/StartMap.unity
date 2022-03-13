@@ -724,10 +724,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hands
       objectReference: {fileID: 0}
-    - target: {fileID: 214009610848214565, guid: 19e63d01de3d6444984c366cf45d8f44, type: 3}
-      propertyPath: objectPrefab
-      value: 
-      objectReference: {fileID: 8168248578662253215, guid: e476007aaf3c4d5429decabae78a67ba, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19e63d01de3d6444984c366cf45d8f44, type: 3}
 --- !u!1 &417804201
@@ -1170,10 +1166,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Legs
       objectReference: {fileID: 0}
-    - target: {fileID: 214009610848214565, guid: 5df3cb9a5c4a2cc40980dac18cf30598, type: 3}
-      propertyPath: objectPrefab
-      value: 
-      objectReference: {fileID: 4188681402496442663, guid: 20160d26c8fb4454d99d58ed8474755f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df3cb9a5c4a2cc40980dac18cf30598, type: 3}
 --- !u!224 &561979253 stripped
@@ -2235,10 +2227,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Accesories
       objectReference: {fileID: 0}
-    - target: {fileID: 214009610848214565, guid: 82b9b5b5c77c7624bb59a98ef1be4d29, type: 3}
-      propertyPath: objectPrefab
-      value: 
-      objectReference: {fileID: 2370296810374810810, guid: 379d10b94fe46344b99484864fe4bbf1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82b9b5b5c77c7624bb59a98ef1be4d29, type: 3}
 --- !u!224 &839539509 stripped
@@ -2976,10 +2964,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Torso
       objectReference: {fileID: 0}
-    - target: {fileID: 214009610848214565, guid: 909bb2295c03691409de84478507d13d, type: 3}
-      propertyPath: objectPrefab
-      value: 
-      objectReference: {fileID: 6838233326069203204, guid: 1c2642bb9da5a9a40acc16d5fb270238, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909bb2295c03691409de84478507d13d, type: 3}
 --- !u!1 &1084736806
@@ -3576,29 +3560,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365100070}
   m_CullTransparentMesh: 1
---- !u!1 &1389184147 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 214009610848214564, guid: 909bb2295c03691409de84478507d13d, type: 3}
-  m_PrefabInstance: {fileID: 1033948546}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1389184148 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 214009609223349036, guid: 909bb2295c03691409de84478507d13d, type: 3}
   m_PrefabInstance: {fileID: 1033948546}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1389184152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389184147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60dff6fd33c57bd4eab0dd739d6e616e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tabConectField: []
 --- !u!1 &1530143873
 GameObject:
   m_ObjectHideFlags: 0

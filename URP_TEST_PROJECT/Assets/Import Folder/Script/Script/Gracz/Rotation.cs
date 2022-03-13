@@ -16,9 +16,9 @@ public class Rotation : ScriptableObject
         objectHorizontalRotation.transform.rotation = Quaternion.Lerp(objectHorizontalRotation.transform.rotation, Quaternion.Euler(objectHorizontalRotation.transform.rotation.x, horizontalRotation, objectHorizontalRotation.transform.rotation.z), mouseSpeed * Time.deltaTime);
 
     }
-    public void WeaponMuzzleDirection(GameObject weaponLeftMuzzle, GameObject weaponRightMuzzle, Camera camera)
+    public void WeaponRotation(GameObject weaponLeft, GameObject weaponRight, Camera camera)
     {
-        weaponLeftMuzzle.transform.LookAt(camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth / 2.0f, camera.pixelHeight / 2.0f, 200f)));
-        weaponRightMuzzle.transform.LookAt(camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth / 2.0f, camera.pixelHeight / 2.0f, 1000f)));
+        weaponLeft.transform.LookAt(camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth / 2.0f, camera.pixelHeight / 2.0f, 100f)));
+        weaponRight.transform.LookAt(camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth / 2.0f, camera.pixelHeight / 2.0f, 100f)));
     }
 }

@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
     {
         playerMovement.ActorMovement(this.gameObject, horizontalRotation.transform.rotation, Camera.main, playerSpeed, playerAnimator, isOnGround);
         playerRotation.PlayerRotation(verticalRotation, horizontalRotation, Camera.main, mouseSpeed);
-        playerRotation.WeaponMuzzleDirection(leftWeapon.GetComponent<IWeapon>().WeaponMuzzle()[0], rightWeapon.GetComponent<IWeapon>().WeaponMuzzle()[1], Camera.main);
+        playerRotation.WeaponRotation(leftWeapon, rightWeapon, Camera.main);   
         if (Input.GetKey(KeyCode.Mouse0))
         {
             StartCoroutine(ShootLeftWeapeon());
