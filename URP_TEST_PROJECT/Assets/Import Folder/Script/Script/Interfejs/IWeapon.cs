@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IWeapon 
 {
     GameObject[] WeaponMuzzle();
-    void Shoot(GameObject muzzle);
+    void Attack(GameObject muzzle);
 }

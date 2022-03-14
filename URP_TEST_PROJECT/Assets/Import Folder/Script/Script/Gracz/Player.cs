@@ -56,13 +56,13 @@ public class Player : MonoBehaviour
     }
     IEnumerator ShootLeftWeapeon()
     {
-        leftWeapon.GetComponent<IWeapon>().Shoot(leftWeapon.GetComponent<IWeapon>().WeaponMuzzle()[0]);
+        leftWeapon.GetComponent<IWeapon>().Attack(leftWeapon.GetComponent<IWeapon>().WeaponMuzzle()[0]);
         //gunAnimator.SetBool("Shoot", true);
         yield return null;
     }
     IEnumerator ShootRightWeapeon()
     {
-        rightWeapon.GetComponent<IWeapon>().Shoot(rightWeapon.GetComponent<IWeapon>().WeaponMuzzle()[1]);
+        rightWeapon.GetComponent<IWeapon>().Attack(rightWeapon.GetComponent<IWeapon>().WeaponMuzzle()[1]);
         //gunAnimator.SetBool("Shoot", true);
         yield return null;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Torch : MonoBehaviour, IWeapon
 {
     [SerializeField] GameObject bullet;
-    public void Shoot(GameObject muzzle)
+    public void Attack(GameObject muzzle)
     {
         Instantiate(bullet, muzzle.transform);
     }

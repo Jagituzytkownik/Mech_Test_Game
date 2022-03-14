@@ -7,7 +7,7 @@ public class MachineGun : MonoBehaviour, IWeapon
     private int time = 0;
     [SerializeField] GameObject weaponMuzzle;
     [SerializeField] GameObject bullet;
-    public void Shoot(GameObject muzzle)
+    public void Attack(GameObject muzzle)
     {
         if(time==20)
         {

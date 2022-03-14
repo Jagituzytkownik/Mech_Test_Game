@@ -8,7 +8,7 @@ public class SetOfMiniguns : MonoBehaviour, IWeapon
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject weaponMuzzleLeft;
     [SerializeField] GameObject weaponMuzzleRight;
-    public void Shoot(GameObject muzzle)
+    public void Attack(GameObject muzzle)
     {
         if (time == 10)
         {

@@ -8,20 +8,20 @@ public class SlotGetObject : MonoBehaviour, IDropHandler
     [SerializeField] private ItemType itemType;
     [SerializeField] private GameObject buildField;
     [SerializeField] private bool isRightWeapon = false;
-    
+
     private GameObject spawnObject;
     private void Update()
     {
-        if(slotItem==null)
+        if (slotItem == null)
         {
             if (spawnObject != null)
             {
                 Destroy(spawnObject);
-                SetEmptySlot(itemType,isRightWeapon);
+                SetEmptySlot(itemType, isRightWeapon);
             }
         }
     }
-    
+
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -33,7 +33,7 @@ public class SlotGetObject : MonoBehaviour, IDropHandler
         }
         else
         {
-            slotItem.ObjectInSlot(false); 
+            slotItem.ObjectInSlot(false);
         }
     }
 
@@ -84,5 +84,5 @@ public class SlotGetObject : MonoBehaviour, IDropHandler
                 break;
         }
     }
-    
+
 }
