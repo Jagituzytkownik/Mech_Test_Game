@@ -391,11 +391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5b1a9608b57f140a0a4de52ec8f98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioVolumeControll: {fileID: 24100000, guid: 701b11500861cdf4ebd9b11ec8ebcdb1, type: 2}
-  volumeSlider: {fileID: 1984594916}
-  musicSlider: {fileID: 1548846865}
-  voiceSlider: {fileID: 1747886459}
-  effectSlider: {fileID: 1662844596}
 --- !u!1 &60732146
 GameObject:
   m_ObjectHideFlags: 0
@@ -8120,10 +8115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670d9c0d16dcc2f4bb9a4979deac6536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTest: {fileID: 1509519106}
-  musicTest: {fileID: 1509519103}
-  effectTest: {fileID: 1509519104}
-  voiceTest: {fileID: 1509519105}
 --- !u!1 &1521284458
 GameObject:
   m_ObjectHideFlags: 0
@@ -9370,10 +9361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0084a0692e6eff4459bd2e4ea5b0f4aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resolutionDropdown: {fileID: 615030215}
-  qualityDropdown: {fileID: 2109207762}
-  frameRateDropdown: {fileID: 853155555}
-  brightnessSlider: {fileID: 1533013962}
 --- !u!1 &1720983542
 GameObject:
   m_ObjectHideFlags: 0

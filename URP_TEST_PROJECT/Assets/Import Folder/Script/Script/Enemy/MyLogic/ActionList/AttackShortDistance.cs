@@ -1,0 +1,55 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class AttackShortDistance : IAction
+{
+    private bool attack = true;
+    public IEnumerator Actions(GameObject player, GameObject enemy, IEnemyAction enemyAction, float vectorDistance, float minDistance, float farDistance)
+    {
+
+        if (Vector3.Distance(player.transform.position, enemy.GetComponent<NavMeshAgent>().transform.position) <= minDistance&&attack==true)
+        {
+            enemy.GetComponent<Animator>().SetBool("Attack",true);
+            enemy.GetComponent<Animator>().SetBool("FarAttack", false);
+            
+            enemy.gameObject.transform.LookAt(new Vector3(player.transform.position.x,enemy.transform.position.y,player.transform.position.z));
+            StateAction(ActionState.actionRunning, enemyAction);
+            attack = false;
+        }
+        else if(Vector3.Distance(player.transform.position, enemy.transform.position) > farDistance - 10f&& Vector3.Distance(player.transform.position, enemy.transform.position)<=farDistance && attack == true)
+        {
+            enemy.GetComponent<Animator>().SetBool("Attack", false);
+            enemy.GetComponent<Animator>().SetBool("FarAttack", true);
+            
+            enemy.transform.LookAt(new Vector3(player.transform.position.x, enemy.transform.position.y, player.transform.position.z));
+            StateAction(ActionState.actionRunning, enemyAction);
+            attack = false;
+        }
+        else if (attack==false)
+        {
+            enemy.GetComponent<Animator>().SetBool("Attack", false);
+            enemy.GetComponent<Animator>().SetBool("FarAttack", false);
+            enemy.GetComponent<NavMeshAgent>().isStopped = true;
+            StateAction(ActionState.actionComplete, enemyAction);
+            attack = true;
+        }
+        else
+        {
+            enemy.GetComponent<Animator>().SetBool("Attack", false);
+            enemy.GetComponent<Animator>().SetBool("FarAttack", false);
+            StateAction(ActionState.actionFail, enemyAction);
+        }
+        yield return null;
+    }
+
+    public void StateAction(ActionState enemyState, IEnemyAction enemy)
+    {
+        enemy.SetState(enemyState);
+    }
+}
+
+//succes when attack complete
+//false when dont complete
+//runn when attack
