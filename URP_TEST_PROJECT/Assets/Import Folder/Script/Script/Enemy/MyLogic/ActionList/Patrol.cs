@@ -18,15 +18,15 @@ public class Patrol : IAction
        if (patrol == false)
        {
             Physics.Raycast(new Vector3(Random.Range(enemy.transform.position.x - 100f, enemy.transform.position.x + 100f), 600f, Random.Range(enemy.transform.position.z - 100f, enemy.transform.position.z + 100f)), Vector3.down, out hitPoint, 1000.0f, 110);
-            destination = new Vector3(hitPoint.point.x, hitPoint.point.y+1f, hitPoint.point.z);
-           patrol = true;
+            destination = new Vector3(hitPoint.point.x, hitPoint.point.y+10f, hitPoint.point.z);
+            patrol = true;
        }
        if (Vector3.Distance(player.transform.position, enemy.transform.position) > distanceDetection)
        {
            //Patroluj
            enemy.GetComponent<Animator>().SetBool("Walk", true);
            enemy.GetComponent<NavMeshAgent>().isStopped = false;
-           if ((int)enemy.transform.position.x == (int) destination.x&& (int) enemy.transform.position.z == (int)destination.z)
+           if (Mathf.Ceil(enemy.transform.position.x)== Mathf.Ceil(destination.x)&& Mathf.Ceil(enemy.transform.position.z) == Mathf.Ceil(destination.z))
            {
                patrol = false;
            }
@@ -36,7 +36,7 @@ public class Patrol : IAction
        else if (Vector3.Distance(player.transform.position, enemy.transform.position) <= distanceDetection)
        {
             //Przerwij Patrol
-            enemy.GetComponent<Animator>().SetBool("Walk", true);
+           enemy.GetComponent<Animator>().SetBool("Walk", true);
            enemy.GetComponent<NavMeshAgent>().isStopped = false;
            StateAction(ActionState.actionComplete, enemyAction);
        }

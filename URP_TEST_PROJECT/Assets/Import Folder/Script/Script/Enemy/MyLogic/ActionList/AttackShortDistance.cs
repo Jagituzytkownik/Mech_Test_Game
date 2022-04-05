@@ -27,7 +27,7 @@ public class AttackShortDistance : IAction
             StateAction(ActionState.actionRunning, enemyAction);
             attack = false;
         }
-        //else if(Vector3.Distance(player.transform.position, enemy.transform.position) >  - 10f&& Vector3.Distance(player.transform.position, enemy.transform.position)<= enemyAction.GetDistance().Item3 && attack == true)
+        //else if(Vector3.Distance(player.transform.position, enemy.transform.position) >  - 100f&& Vector3.Distance(player.transform.position, enemy.transform.position)<= enemyAction.GetDistance().Item3 && attack == true)
         //{
         //    //Daleki Atak
         //    enemy.GetComponent<Animator>().SetBool("Attack", false);
@@ -49,6 +49,7 @@ public class AttackShortDistance : IAction
         else
         {
             //B³¹d
+            attack = true;
             enemy.GetComponent<Animator>().SetBool("Attack", false);
             enemy.GetComponent<Animator>().SetBool("FarAttack", false);
             StateAction(ActionState.actionFail, enemyAction);

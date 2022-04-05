@@ -19,8 +19,8 @@ public class Boar :  EnemyAction
         listEnemyAction = new List<IAction>();
         listEnemyAction.Add(new Patrol(distanceDetection));
         listEnemyAction.Add(new GoToPlayer(distanceDetection,distanceLowAttack,distanceFarAttack));
-        listEnemyAction.Add(new AttackLongDistance(distanceLowAttack));
-        listEnemyAction.Add(new AttackShortDistance(distanceFarAttack));
+        listEnemyAction.Add(new AttackLongDistance(distanceFarAttack));
+        listEnemyAction.Add(new AttackShortDistance(distanceLowAttack));
     }
     // Start is called before the first frame update
     void Start()
@@ -59,6 +59,8 @@ public class Boar :  EnemyAction
             }
             else
             {
+                StopCoroutine(listEnemyAction[numberAction].Actions(player, this.gameObject, this));
+                print("false");
             }
             muzzle.transform.LookAt(player.transform);
         }
@@ -67,7 +69,7 @@ public class Boar :  EnemyAction
     }
     private void FixedUpdate()
     {
-        isOnGround = Physics.CheckSphere(this.gameObject.transform.position, 9 , 110, QueryTriggerInteraction.Ignore);//ground detect settings
+        isOnGround = Physics.CheckSphere(this.gameObject.transform.position, 9, 110, QueryTriggerInteraction.Ignore);//ground detect settings
         
     }
 

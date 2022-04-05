@@ -17,7 +17,7 @@ public class GoToPlayer : IAction
     }
     public  IEnumerator Actions(GameObject player, GameObject enemy, EnemyAction enemyAction)
     {
-        if (Vector3.Distance(player.transform.position, enemy.transform.position) <= distanceDetection)
+        if (Vector3.Distance(player.transform.position, enemy.transform.position) <= distanceDetection && Vector3.Distance(player.transform.position, enemy.transform.position)>distanceFarAttack)
         {
             //IdŸ do gracza jeœli jest w zasiêgu
             enemy.GetComponent<Animator>().SetBool("Walk", true);
@@ -26,17 +26,17 @@ public class GoToPlayer : IAction
             enemy.GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
             StateAction(ActionState.actionRunning, enemyAction);
         }
-        else if(Vector3.Distance(player.transform.position, enemy.transform.position) < distanceFarAttack - 100f&& Vector3.Distance(player.transform.position, enemy.transform.position) > distanceLowAttack)
+        else if(Vector3.Distance(player.transform.position, enemy.transform.position) < distanceFarAttack - 100f && Vector3.Distance(player.transform.position, enemy.transform.position) > distanceLowAttack)
         {
             //Biegnij do gracza jeœli jest pomiêdzy 
             enemy.GetComponent<Animator>().SetBool("Walk", true);
             enemy.GetComponent<Animator>().SetBool("Run", true);
-            enemy.GetComponent<NavMeshAgent>().speed = 100;
+            enemy.GetComponent<NavMeshAgent>().speed = 1000;
             enemy.GetComponent<NavMeshAgent>().isStopped = false;
             enemy.GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
             StateAction(ActionState.actionRunning, enemyAction);
         }
-        else if (Vector3.Distance(player.transform.position, enemy.transform.position) < distanceLowAttack && Vector3.Distance(player.transform.position, enemy.transform.position) > distanceDetection )
+        else if (Vector3.Distance(player.transform.position, enemy.transform.position) < distanceLowAttack|| Vector3.Distance(player.transform.position, enemy.transform.position) < distanceFarAttack || Vector3.Distance(player.transform.position, enemy.transform.position) > distanceDetection )
         {
             //Przerwij pod¹¿anie do gracza
             enemy.GetComponent<NavMeshAgent>().isStopped = true;

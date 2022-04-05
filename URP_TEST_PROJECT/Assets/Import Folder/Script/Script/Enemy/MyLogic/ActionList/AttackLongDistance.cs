@@ -26,7 +26,7 @@ public class AttackLongDistance : IAction
         //    StateAction(ActionState.actionRunning, enemyAction);
         //    attack = false;
         //}
-        if(Vector3.Distance(player.transform.position, enemy.transform.position) > distanceFarAttack - 1000f&& attack == true)
+        if(Vector3.Distance(player.transform.position, enemy.GetComponent<NavMeshAgent>().transform.position) > distanceFarAttack - 1000f&& attack == true)
         {
             //Daleki Atak
             enemy.GetComponent<Animator>().SetBool("Attack", false);
@@ -48,6 +48,7 @@ public class AttackLongDistance : IAction
         else
         {
             //B³¹d
+            attack = true;
             enemy.GetComponent<Animator>().SetBool("Attack", false);
             enemy.GetComponent<Animator>().SetBool("FarAttack", false);
             StateAction(ActionState.actionFail, enemyAction);
