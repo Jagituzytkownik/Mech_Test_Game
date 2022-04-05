@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class Boar : MonoBehaviour, IEnemyAction
-{              
-    private GameObject player;
-    [SerializeField] private float distance;
-    [SerializeField] private float distanceLow;
-    [SerializeField] private float distanceFar;
+public class Boar :  EnemyAction
+{
     [SerializeField] private ParticleSystem toxicProjectile;
+    [SerializeField] private float distanceDetection;
+    [SerializeField] private float distanceLowAttack;
+    [SerializeField] private float distanceFarAttack;
     [SerializeField] private GameObject muzzle;
     private List<IAction> listEnemyAction;
     private bool isOnGround = false;
     private int numberAction = 0;
     private ActionState actionState;
+    private GameObject player;
     private void Awake()
     {
         listEnemyAction = new List<IAction>();
-        listEnemyAction.Add(new Patrol());
-        listEnemyAction.Add(new GoToPlayer());
-        listEnemyAction.Add(new AttackShortDistance());
+        listEnemyAction.Add(new Patrol(distanceDetection));
+        listEnemyAction.Add(new GoToPlayer(distanceDetection,distanceLowAttack,distanceFarAttack));
+        listEnemyAction.Add(new AttackLongDistance(distanceLowAttack));
+        listEnemyAction.Add(new AttackShortDistance(distanceFarAttack));
     }
     // Start is called before the first frame update
     void Start()
@@ -45,15 +46,15 @@ public class Boar : MonoBehaviour, IEnemyAction
 
         if (player != null&&isOnGround==true)
         {
-            StartCoroutine(listEnemyAction[numberAction].Actions(player, this.gameObject, this, distance, distanceLow, distanceFar));
+            StartCoroutine(listEnemyAction[numberAction].Actions(player, this.gameObject, this));
             if (actionState == ActionState.actionComplete)
             {
-                StopCoroutine(listEnemyAction[numberAction].Actions(player, this.gameObject, this, distance, distanceLow, distanceFar));
+                StopCoroutine(listEnemyAction[numberAction].Actions(player, this.gameObject, this));
                 numberAction = numberAction < listEnemyAction.Count - 1 ? numberAction + 1 : listEnemyAction.Count - 1;
             }
             else if (actionState == ActionState.actionFail)
             {
-                StopCoroutine(listEnemyAction[numberAction].Actions(player, this.gameObject, this, distance, distanceLow, distanceFar));
+                StopCoroutine(listEnemyAction[numberAction].Actions(player, this.gameObject, this));
                 numberAction = 0;
             }
             else
@@ -66,11 +67,11 @@ public class Boar : MonoBehaviour, IEnemyAction
     }
     private void FixedUpdate()
     {
-        isOnGround = Physics.CheckSphere(this.gameObject.transform.position, 9, 110, QueryTriggerInteraction.Ignore);//ground detect settings
-
+        isOnGround = Physics.CheckSphere(this.gameObject.transform.position, 9 , 110, QueryTriggerInteraction.Ignore);//ground detect settings
+        
     }
 
-    public void SetState(ActionState actionState)
+    public override void SetState(ActionState actionState)
     {
         this.actionState = actionState;
     }
@@ -80,8 +81,13 @@ public class Boar : MonoBehaviour, IEnemyAction
         Instantiate<ParticleSystem>(toxicProjectile, muzzle.transform.position, muzzle.transform.rotation) ;
     }
 
-    public void SetPlayer(GameObject player)
+    public override void SetPlayer(GameObject player)
     {
         this.player = player;
     }
-}
+
+    public override (float,float,float) GetDistance()
+    {
+        return (distanceDetection, distanceLowAttack, distanceFarAttack);
+    }          
+}              

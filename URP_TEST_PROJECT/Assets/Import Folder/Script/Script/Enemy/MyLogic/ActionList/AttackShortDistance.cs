@@ -6,11 +6,20 @@ using UnityEngine.AI;
 public class AttackShortDistance : IAction
 {
     private bool attack = true;
-    public IEnumerator Actions(GameObject player, GameObject enemy, IEnemyAction enemyAction, float vectorDistance, float minDistance, float farDistance)
+    private float distanceLowAttack;
+
+    public AttackShortDistance(float distanceLowAttack)
+    {
+        this.distanceLowAttack = distanceLowAttack;
+    }
+
+
+    public IEnumerator Actions(GameObject player, GameObject enemy, EnemyAction enemyAction)
     {
 
-        if (Vector3.Distance(player.transform.position, enemy.GetComponent<NavMeshAgent>().transform.position) <= minDistance&&attack==true)
+        if (Vector3.Distance(player.transform.position, enemy.GetComponent<NavMeshAgent>().transform.position) <= distanceLowAttack &&attack==true)
         {
+            //Bliski Atak
             enemy.GetComponent<Animator>().SetBool("Attack",true);
             enemy.GetComponent<Animator>().SetBool("FarAttack", false);
             
@@ -18,17 +27,19 @@ public class AttackShortDistance : IAction
             StateAction(ActionState.actionRunning, enemyAction);
             attack = false;
         }
-        else if(Vector3.Distance(player.transform.position, enemy.transform.position) > farDistance - 10f&& Vector3.Distance(player.transform.position, enemy.transform.position)<=farDistance && attack == true)
-        {
-            enemy.GetComponent<Animator>().SetBool("Attack", false);
-            enemy.GetComponent<Animator>().SetBool("FarAttack", true);
-            
-            enemy.transform.LookAt(new Vector3(player.transform.position.x, enemy.transform.position.y, player.transform.position.z));
-            StateAction(ActionState.actionRunning, enemyAction);
-            attack = false;
-        }
+        //else if(Vector3.Distance(player.transform.position, enemy.transform.position) >  - 10f&& Vector3.Distance(player.transform.position, enemy.transform.position)<= enemyAction.GetDistance().Item3 && attack == true)
+        //{
+        //    //Daleki Atak
+        //    enemy.GetComponent<Animator>().SetBool("Attack", false);
+        //    enemy.GetComponent<Animator>().SetBool("FarAttack", true);
+        //    
+        //    enemy.transform.LookAt(new Vector3(player.transform.position.x, enemy.transform.position.y, player.transform.position.z));
+        //    StateAction(ActionState.actionRunning, enemyAction);
+        //    attack = false;
+        //}
         else if (attack==false)
         {
+            //Koniec Atak
             enemy.GetComponent<Animator>().SetBool("Attack", false);
             enemy.GetComponent<Animator>().SetBool("FarAttack", false);
             enemy.GetComponent<NavMeshAgent>().isStopped = true;
@@ -37,6 +48,7 @@ public class AttackShortDistance : IAction
         }
         else
         {
+            //B³¹d
             enemy.GetComponent<Animator>().SetBool("Attack", false);
             enemy.GetComponent<Animator>().SetBool("FarAttack", false);
             StateAction(ActionState.actionFail, enemyAction);
@@ -44,7 +56,7 @@ public class AttackShortDistance : IAction
         yield return null;
     }
 
-    public void StateAction(ActionState enemyState, IEnemyAction enemy)
+    public void StateAction(ActionState enemyState, EnemyAction enemy)
     {
         enemy.SetState(enemyState);
     }

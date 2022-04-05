@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        isOnGround = Physics.CheckSphere(this.gameObject.transform.position, 2, 110, QueryTriggerInteraction.Ignore);//ground detect settings
+        isOnGround = Physics.CheckSphere(this.gameObject.transform.position, 20, 110, QueryTriggerInteraction.Ignore);//ground detect settings
 
     }
 
